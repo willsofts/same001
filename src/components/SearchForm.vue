@@ -42,7 +42,8 @@ const tableSettings = {
         {name: "fielddate", type: "DATE", sorter: "fielddate", label: "fielddate_headerlabel", css: "text-center" },
         {name: "fieldtime", type: "TIME", sorter: "fieldtime", label: "fieldtime_headerlabel", css: "text-center" },
         {name: "fielddecimal", type: "DECIMAL", sorter: "fielddecimal", label: "fielddecimal_headerlabel", css: "text-right" },
-        {name: "fieldtext", type: "STRING", sorter: "fieldtext", label: "fieldtext_headerlabel", css: "text-left" }
+        {name: "fieldtext", type: "STRING", sorter: "fieldtext", label: "fieldtext_headerlabel", css: "text-left" },
+        {name: "fieldflag", type: "STRING", sorter: "fieldflag", label: "fieldflag_headerlabel", css: "text-center" }
     ],        
     actions: [
         {type: "button", action: "edit"},
@@ -150,6 +151,18 @@ export default {
       console.log("dataSelected",item,"action",action);
       this.$emit('data-select', item, action);
     },
+    formatData(data,field) {
+      if(field.name=="fieldflag") {
+        if("1"==data) {
+          return this.labels.active_label; //"Active";
+          //return '<em class="fa fa-check-square-o"></em>';
+        } else {
+          return this.labels.inactive_label; //"Inactive";
+          //return '<em class="fa fa-ban"></em>';
+        } 
+      }
+      return this.$refs.dataTable.formatField(data,field);
+    },    
   }
 };
 </script>

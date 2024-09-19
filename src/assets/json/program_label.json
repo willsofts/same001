@@ -18,15 +18,7 @@
 			{"name": "fieldtime_headerlabel", "value": "เวลา"},
 			{"name": "fielddecimal_headerlabel", "value": "จำนวน"},
 			{"name": "fieldtext_headerlabel", "value": "ชื่อ"},
-			{"name": "fieldchar_alert", "value": "กรุณากรอกข้อมูล"},
-			{"name": "fieldtext_alert", "value": "กรุณากรอกข้อมูล"},
-			{"name": "centerflag_label", "value": "กรุณากรอกข้อมูล"},
-			{"name": "fielddate_alert", "value": "กรุณากรอกข้อมูล"},
-			{"name": "fieldtime_alert", "value": "กรุณากรอกข้อมูล"},
-			{"name": "fielddecimal_alert", "value": "กรุณากรอกข้อมูล"},
-			{"name": "fieldinteger_alert", "value": "กรุณากรอกข้อมูล"},
-			{"name": "fieldvarchar_alert", "value": "กรุณากรอกข้อมูล"},
-			{"name": "fieldflag_alert", "value": "กรุณากรอกข้อมูล"}
+			{"name": "fieldflag_headerlabel", "value": "ใช้งาน"}
 		]
 	},
 	{
@@ -48,15 +40,7 @@
 			{"name": "fieldtime_headerlabel", "value": "Time"},
 			{"name": "fielddecimal_headerlabel", "value": "Amount"},
 			{"name": "fieldtext_headerlabel", "value": "Name"},
-			{"name": "fieldchar_alert", "value": "You can not leave this empty"},
-			{"name": "fieldtext_alert", "value": "You can not leave this empty"},
-			{"name": "centerflag_label", "value": "Reserved for center setting"},
-			{"name": "fielddate_alert", "value": "You can not leave this empty"},
-			{"name": "fieldtime_alert", "value": "You can not leave this empty"},
-			{"name": "fielddecimal_alert", "value": "You can not leave this empty"},
-			{"name": "fieldinteger_alert", "value": "You can not leave this empty"},
-			{"name": "fieldvarchar_alert", "value": "You can not leave this empty"},
-			{"name": "fieldflag_alert", "value": "You can not leave this empty"}
+			{"name": "fieldflag_headerlabel", "value": "Active"}
 		]
 	}
 ]
