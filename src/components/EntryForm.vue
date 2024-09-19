@@ -102,8 +102,8 @@ const defaultData = {
   fieldtext: '',
   fielddate: Utilities.getDateNow(),
   fieldtime: Utilities.getTimeNow(),
-  fielddecimal: 0.00,
-  fieldinteger: 0,
+  fielddecimal: "0.00",
+  fieldinteger: "0",
   fieldvarchar: "E",
   fieldflag: "1",
 };
