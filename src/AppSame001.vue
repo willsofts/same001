@@ -2,7 +2,7 @@
 <template>
   <div id="fswaitlayer" class="fa fa-spinner fa-spin"></div>
   <div class="pt-page pt-page-current pt-page-controller search-pager">
-    <PageHeader ref="pageHeader" :labels="labels" pid="same001" version="1.0.0" showLanguage="true" @language-changed="changeLanguage" />
+    <PageHeader ref="pageHeader" :labels="labels" pid="same001" version="1.0.0" showLanguage="true" @language-changed="changeLanguage" :multiLanguages="multiLanguages" />
     <SearchForm ref="searchForm" :labels="labels" :dataCategory="dataCategory" @data-select="dataSelected" @data-insert="dataInsert" />
   </div>
   <teleport to="#modaldialog">
@@ -15,7 +15,7 @@ import $ from "jquery";
 import { PageHeader } from '@willsofts/will-control';
 import SearchForm from '@/components/SearchForm.vue';
 import EntryForm from '@/components/EntryForm.vue';
-import { getLabelModel } from "@willsofts/will-app";
+import { getLabelModel, getMultiLanguagesModel } from "@willsofts/will-app";
 import { DEFAULT_CONTENT_TYPE, getDefaultLanguage, setDefaultLanguage, getApiUrl } from "@willsofts/will-app";
 import { startApplication, serializeParameters } from "@willsofts/will-app";
 
@@ -31,13 +31,15 @@ export default {
     };
     let labels = ref(getLabelModel());
     let alreadyLoading = ref(false);
-    return { labels, dataCategory, dataChunk, alreadyLoading };
+    const multiLanguages = ref(getMultiLanguagesModel());
+    return { multiLanguages, labels, dataCategory, dataChunk, alreadyLoading };
   },
   mounted() {
     console.log("App: mounted ...");
     this.$nextTick(() => {
       //ensure ui completed then invoke startApplication 
       startApplication("demo002",(data) => {
+        this.multiLanguages = getMultiLanguagesModel();
         this.messagingHandler(data);
         this.loadDataCategories(!this.alreadyLoading,() => {
           this.$refs.pageHeader.changeLanguage(getDefaultLanguage());
