@@ -15,7 +15,7 @@ import $ from "jquery";
 import { PageHeader } from '@willsofts/will-control';
 import SearchForm from '@/components/SearchForm.vue';
 import EntryForm from '@/components/EntryForm.vue';
-import { getLabelModel, getMultiLanguagesModel } from "@willsofts/will-app";
+import { getLabelModel, getMultiLanguagesModel, getPermitModel } from "@willsofts/will-app";
 import { DEFAULT_CONTENT_TYPE, getDefaultLanguage, setDefaultLanguage, getApiUrl } from "@willsofts/will-app";
 import { startApplication, serializeParameters } from "@willsofts/will-app";
 
@@ -36,9 +36,9 @@ export default {
   },
   mounted() {
     console.log("App: mounted ...");
-    this.$nextTick(() => {
+    this.$nextTick(async () => {
       //ensure ui completed then invoke startApplication 
-      startApplication("demo002",(data) => {
+      startApplication("same001",(data) => {
         this.multiLanguages = getMultiLanguagesModel();
         this.messagingHandler(data);
         this.loadDataCategories(!this.alreadyLoading,() => {
@@ -48,6 +48,9 @@ export default {
       //try to find out parameters from url
       const searchParams = new URLSearchParams(window.location.href);
       console.log("param: authtoken=",searchParams.get("authtoken"),", language=",searchParams.get("language"));      
+      //try to get app permissions
+      this.permits = await getPermitModel("same001");
+      console.log("permits:",this.permits,"can insert=",this.permits.canDo('insert'));
     });
   },
   methods: {
