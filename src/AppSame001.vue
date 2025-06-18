@@ -2,7 +2,7 @@
 <template>
   <div id="fswaitlayer" class="fa fa-spinner fa-spin"></div>
   <div class="pt-page pt-page-current pt-page-controller search-pager">
-    <PageHeader ref="pageHeader" :labels="labels" pid="same001" version="1.0.0" showLanguage="true" @language-changed="changeLanguage" :multiLanguages="multiLanguages" :build="buildVersion" />
+    <PageHeader ref="pageHeader" :labels="labels" pid="same001" version="1.0.0" showLanguage="true" @language-changed="changeLanguage" :multiLanguages="multiLanguages" :build="buildVersion" :visible="displayPageHeader" />
     <SearchForm ref="searchForm" :labels="labels" :dataCategory="dataCategory" @data-select="dataSelected" @data-insert="dataInsert" />
   </div>
   <teleport to="#modaldialog">
@@ -15,7 +15,7 @@ import $ from "jquery";
 import { PageHeader } from '@willsofts/will-control';
 import SearchForm from '@/components/SearchForm.vue';
 import EntryForm from '@/components/EntryForm.vue';
-import { getLabelModel, getMultiLanguagesModel, getPermitModel } from "@willsofts/will-app";
+import { getLabelModel, getMultiLanguagesModel, getPermitModel, getMetaInfo } from "@willsofts/will-app";
 import { DEFAULT_CONTENT_TYPE, getDefaultLanguage, setDefaultLanguage, getApiUrl } from "@willsofts/will-app";
 import { startApplication, serializeParameters } from "@willsofts/will-app";
 
@@ -33,7 +33,8 @@ export default {
     let labels = ref(getLabelModel());
     let alreadyLoading = ref(false);
     const multiLanguages = ref(getMultiLanguagesModel());
-    return { buildVersion, multiLanguages, labels, dataCategory, dataChunk, alreadyLoading };
+    const displayPageHeader = !(String(getMetaInfo().DISPLAY_PAGE_HEADER)=="false");
+    return { displayPageHeader, buildVersion, multiLanguages, labels, dataCategory, dataChunk, alreadyLoading };
   },
   mounted() {
     console.log("App: mounted ...");
