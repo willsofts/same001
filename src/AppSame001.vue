@@ -41,11 +41,18 @@ export default {
     this.$nextTick(async () => {
       //ensure ui completed then invoke startApplication 
       startApplication("same001",(data) => {
-        this.multiLanguages = getMultiLanguagesModel();
-        this.messagingHandler(data);
-        this.loadDataCategories(!this.alreadyLoading,() => {
-          this.$refs.pageHeader.changeLanguage(getDefaultLanguage());
-        });
+        if(data.type=="language") {
+          let lang = data.language;
+          if(lang) {
+            this.changeLanguage(lang);
+          }
+        } else {
+          this.multiLanguages = getMultiLanguagesModel();
+          this.messagingHandler(data);
+          this.loadDataCategories(!this.alreadyLoading,() => {
+            this.$refs.pageHeader.changeLanguage(getDefaultLanguage());
+          });
+        }
       });
       //try to find out parameters from url
       const searchParams = new URLSearchParams(window.location.href);
